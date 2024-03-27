@@ -59,7 +59,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: brakeman-sarif-report
-        path: path/to/brakeman.sarif
+        path: brakeman.sarif
 
     # Upload the SARIF file generated in the previous step
     - name: Upload SARIF 
