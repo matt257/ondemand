@@ -53,10 +53,16 @@ jobs:
 
     - name: List output files
       run: ls -la
-
+      
+    # Save the SARIF file as an Artifact, because github/codeql-action/upload-sarif@v3 doesn't seem to work 
+    - name: Upload SARIF as an Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: brakeman-sarif-report
+        path: path/to/brakeman.sarif
 
     # Upload the SARIF file generated in the previous step
-    - name: Upload SARIF
+    - name: Upload SARIF 
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: brakeman.sarif
