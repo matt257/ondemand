@@ -51,6 +51,10 @@ jobs:
       run: |
         brakeman --force -o brakeman.sarif .
 
+    - name: List output files
+      run: ls -la
+
+
     # Upload the SARIF file generated in the previous step
     - name: Upload SARIF
       uses: github/codeql-action/upload-sarif@v3
