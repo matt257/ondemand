@@ -44,17 +44,15 @@ jobs:
         BRAKEMAN_VERSION: '4.10' # SARIF support is provided in Brakeman version 4.10+
       run: |
         gem install brakeman --version $BRAKEMAN_VERSION
-        bundle install 
-
 
     # Execute Brakeman CLI and generate a SARIF output with the security issues identified during the analysis
     - name: Scan
       continue-on-error: true
       run: |
-        bundle exec brakeman --force -o output.sarif
+        brakeman --force -o brakeman.sarif .
 
     # Upload the SARIF file generated in the previous step
     - name: Upload SARIF
       uses: github/codeql-action/upload-sarif@v3
       with:
-        sarif_file: output.sarif
+        sarif_file: brakeman.sarif
